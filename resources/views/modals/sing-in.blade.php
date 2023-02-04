@@ -1,5 +1,5 @@
 
-<div id="singIn" class="modal">
+<div id="singIn" class="modal" onclick="hiddenModal('singIn')">
     <div>
         <div class="modal-header">
             <h3>Sing In</h3>

@@ -53,14 +53,14 @@
                                     <h5 id="title-{{ $post->id }}">{{ $post->title }}</h5>
                                     @auth
                                         @if($post->user_id == auth()->user()->id)
-                                            <button type="button" onclick="openModal('updateQuote'), updateModal({{ $post->user_id  }})">Update</button>
+                                            <button type="button" onclick="openModal('updateQuote'), updateModal({{ $post->id  }})">Update</button>
                                         @endif
                                     @endauth
                                 </div>
                                 <div class="share">
-                                    <button type="button"> <img src="{{ asset('icons/telegram.png') }}" alt=""></button>
-                                    <button type="button"> <img src="{{ asset('icons/email.png') }}" alt=""></button>
-                                    <button type="button"> <img src="{{ asset('icons/viber.png') }}" alt=""></button>
+                                    <button type="button" onclick="openModal('sendTelegram')"> <img src="{{ asset('icons/telegram.png') }}" alt=""></button>
+                                    <button type="button" onclick="openModal('sendEmail')"> <img src="{{ asset('icons/email.png') }}" alt=""></button>
+                                    <button type="button" onclick="openModal('sendViber')"> <img src="{{ asset('icons/viber.png') }}" alt=""></button>
                                 </div>
                             </div>
                             <div class="item-body">
@@ -79,6 +79,10 @@
                 @include('modals/sing-in')
                 @include('modals/sing-up')
             @endauth
+            @include('modals/send-telegram')
+            @include('modals/send-email')
+            @include('modals/send-viber')
+            <script src="{{ asset('js/jquery.js') }}"></script>
             <script src="{{ asset('js/main.js') }}"></script>
         </footer>
     </body>

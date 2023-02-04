@@ -1,5 +1,5 @@
 
-<div id="createQuote" class="modal">
+<div id="createQuote" class="modal" onclick="hiddenModal('createQuote')">
     <div>
         <div class="modal-header">
             <h3>Create Quote</h3>
@@ -13,7 +13,7 @@
 
             <label for="quote">Quote</label>
             <textarea name="quote" id="quote" cols="30" rows="10" style="width: 90%"></textarea>
-            <button style="padding: 15px"> Sing In </button>
+            <button style="padding: 15px"> Create </button>
         </form>
         
         </div>

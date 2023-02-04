@@ -23,8 +23,8 @@ Route::middleware('auth')->group(function ()
     Route::post('post/update', 'PostController@update')->name('post.update');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::post('send/to/telegram', 'SendController@sendTelegram')->name('send.telegram');
+Route::post('send/to/viber', 'SendController@sendViber')->name('send.viber');
+Route::post('send/to/email', 'SendController@sendEmail')->name('send.email');
 
 require __DIR__.'/auth.php';
