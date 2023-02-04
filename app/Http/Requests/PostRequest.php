@@ -25,7 +25,7 @@ class PostRequest extends FormRequest
     {
         return [
             'title' => 'required|max:50',
-            'quote' => 'required|unique:posts|max:500',
+            'quote' => 'required|unique:posts,quote|max:500',
         ];
     }
 }

@@ -23,7 +23,7 @@ class PostController extends Controller
     public function update(Request $request)
     {
         $validated = $request->validate([
-            'post_id' => 'required|numeric',
+            'post_id' => 'required|numeric|exists:users,id',
             'title' => 'required|max:50',
             'quote' => 'required|max:500|unique:posts,quote,' . $request->post_id,
         ]);
