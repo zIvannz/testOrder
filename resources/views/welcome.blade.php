@@ -26,7 +26,7 @@
                 @auth
                     <p>{{ auth()->user()->name }}</p>
                 @elseguest
-                    <button type="button"> Sing In</button> or <button type="button"> Sing up</button>
+                    <button type="button" onclick="openModal('singIn')"> Sing In</button> or <button type="button" onclick="openModal('singUp')"> Sing up</button>
                 @endauth
             </div>
         </header>
@@ -34,26 +34,39 @@
             <div class="title-page">
                 <h3>Quotes</h3>
                 @auth
-                    <button type="button">Add Quotes</button>
+                    <button type="button" onclick="openModal('createQuote')">Add Quotes</button>
                 @endauth
             </div>
             <div class="items">
-                <div class="item">
-                    <div class="item-header">
-                        <div>
-                            <h5>Quote</h5>
+                @if ($posts->count() === 0)
+                    <h6>No quotes yet</h6>
+                @else
+                    <div class="item">
+                        <div class="item-header">
+                            <div>
+                                <h5>Quote</h5>
+                            </div>
+                            <div class="share">
+                                <button type="button"> <img src="{{ asset('icons/telegram.png') }}" alt=""></button>
+                                <button type="button"> <img src="{{ asset('icons/email.png') }}" alt=""></button>
+                                <button type="button"> <img src="{{ asset('icons/viber.png') }}" alt=""></button>
+                            </div>
                         </div>
-                        <div class="share">
-                            <button type="button"> <img src="{{ asset('icons/telegram.png') }}" alt=""></button>
-                            <button type="button"> <img src="{{ asset('icons/email.png') }}" alt=""></button>
-                            <button type="button"> <img src="{{ asset('icons/viber.png') }}" alt=""></button>
+                        <div class="item-body">
+                            <p>Quote QuoteQuote Quote Quote Quote QuoteQuote Quote Quote Quote QuoteQuote Quote Quote QuoteQuoteQuoteQuoteQuote</p>
                         </div>
                     </div>
-                    <div class="item-body">
-                        <p>Quote QuoteQuote Quote Quote Quote QuoteQuote Quote Quote Quote QuoteQuote Quote Quote QuoteQuoteQuoteQuoteQuote</p>
-                    </div>
-                </div>
+                @endif
             </div>
         </div>
+        <footer>
+            @auth
+                @include('modals/create-quote')
+            @elseguest
+                @include('modals/sing-in')
+                @include('modals/sing-up')
+            @endauth
+            <script src="{{ asset('js/main.js') }}"></script>
+        </footer>
     </body>
 </html>
