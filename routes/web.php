@@ -17,6 +17,12 @@ use App\Http\Middleware;
 
 Route::get('/', 'MainController@home')->name('home');
 
+Route::middleware('auth')->group(function ()
+{
+    Route::post('post/create', 'PostController@create')->name('post.create');
+    Route::post('post/update', 'PostController@update')->name('post.update');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

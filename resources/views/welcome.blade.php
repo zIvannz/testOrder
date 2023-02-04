@@ -38,30 +38,43 @@
                 @endauth
             </div>
             <div class="items">
+                @if ($errors->any())
+                    @foreach ($errors->all() as $error)
+                        <div>{{$error}}</div>
+                    @endforeach
+                @endif
                 @if ($posts->count() === 0)
                     <h6>No quotes yet</h6>
                 @else
-                    <div class="item">
-                        <div class="item-header">
-                            <div>
-                                <h5>Quote</h5>
+                    @foreach ($posts as $post)
+                        <div class="item">
+                            <div class="item-header">
+                                <div style="display: flex; align-items: center;">
+                                    <h5 id="title-{{ $post->id }}">{{ $post->title }}</h5>
+                                    @auth
+                                        @if($post->user_id == auth()->user()->id)
+                                            <button type="button" onclick="openModal('updateQuote'), updateModal({{ $post->user_id  }})">Update</button>
+                                        @endif
+                                    @endauth
+                                </div>
+                                <div class="share">
+                                    <button type="button"> <img src="{{ asset('icons/telegram.png') }}" alt=""></button>
+                                    <button type="button"> <img src="{{ asset('icons/email.png') }}" alt=""></button>
+                                    <button type="button"> <img src="{{ asset('icons/viber.png') }}" alt=""></button>
+                                </div>
                             </div>
-                            <div class="share">
-                                <button type="button"> <img src="{{ asset('icons/telegram.png') }}" alt=""></button>
-                                <button type="button"> <img src="{{ asset('icons/email.png') }}" alt=""></button>
-                                <button type="button"> <img src="{{ asset('icons/viber.png') }}" alt=""></button>
+                            <div class="item-body">
+                                <p id="quote-{{ $post->id }}">{{ $post->quote }}</p>
                             </div>
                         </div>
-                        <div class="item-body">
-                            <p>Quote QuoteQuote Quote Quote Quote QuoteQuote Quote Quote Quote QuoteQuote Quote Quote QuoteQuoteQuoteQuoteQuote</p>
-                        </div>
-                    </div>
+                    @endforeach
                 @endif
             </div>
         </div>
         <footer>
             @auth
                 @include('modals/create-quote')
+                @include('modals/update-quote')
             @elseguest
                 @include('modals/sing-in')
                 @include('modals/sing-up')

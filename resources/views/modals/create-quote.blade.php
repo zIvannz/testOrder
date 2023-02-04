@@ -6,7 +6,7 @@
             <span class="close" onclick="closeModal('createQuote')">&times;</span>
         </div>
         <div class="modal-content">
-        <form action="{{ route('login') }}" method="post">
+        <form action="{{ route('post.create') }}" method="post">
             @csrf
             <label for="title">Title</label>
             <input type="text" id="title" name="title" required>

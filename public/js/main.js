@@ -13,5 +13,13 @@ window.onclick = function(event) {
         document.getElementById('singUp').style.display = "none";
     }else if(event.target.id == "createQuote"){
         document.getElementById('createQuote').style.display = "none";
+    }else if(event.target.id == "updateQuote"){
+        document.getElementById('updateQuote').style.display = "none";
     }
+}
+
+function updateModal(id) {
+    document.getElementById('post_id').value = id
+    document.getElementById('title_update').value = document.getElementById('title-' + id).textContent;
+    document.getElementById('update_quote').value = document.getElementById('quote-' + id).textContent;
 }
