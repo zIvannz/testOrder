@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Share extends Model
 {
     use HasFactory;
-
-    public function shares()
+    
+    public function post()
     {
-        return $this->hasMany(Share::class, 'post_id', 'id');
+        return $this->hasOne(Post::class, 'id', 'post_id');
     }
 }

@@ -7,6 +7,7 @@
         <div class="modal-content">
             <form id="sendViberForm" action="{{ route('send.viber') }}" method="post">
                 @csrf
+                <input type="hidden" id="sendViberPostId" name="post_id">
                 <p id="errorsViber"></p>
                 <label for="sendViberValue">Your number in Viber</label>
                 <input type="tell" id="sendViberValue" name="number" required>

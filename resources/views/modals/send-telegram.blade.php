@@ -9,6 +9,7 @@
             
             <form id="sendTelegramForm" action="{{ route('send.telegram')}}" method="post">
                 @csrf
+                <input type="hidden" id="sendTelegramPostId" name="post_id">
                 <p id="errorsTelegram"></p>
                 <label for="sendTelegramValue">Your number in Telegram</label>
                 <input type="tell" id="sendTelegramValue" name="number" required>

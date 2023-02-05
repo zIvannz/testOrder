@@ -58,9 +58,10 @@
                                     @endauth
                                 </div>
                                 <div class="share">
-                                    <button type="button" onclick="openModal('sendTelegram')"> <img src="{{ asset('icons/telegram.png') }}" alt=""></button>
-                                    <button type="button" onclick="openModal('sendEmail')"> <img src="{{ asset('icons/email.png') }}" alt=""></button>
-                                    <button type="button" onclick="openModal('sendViber')"> <img src="{{ asset('icons/viber.png') }}" alt=""></button>
+                                    <p style="">{{$post->shares->count()}}</p>
+                                    <button type="button" onclick="openShareModal('sendTelegram', {{ $post->id }})"> <img src="{{ asset('icons/telegram.png') }}" alt=""></button>
+                                    <button type="button" onclick="openShareModal('sendEmail', {{ $post->id }})"> <img src="{{ asset('icons/email.png') }}" alt=""></button>
+                                    <button type="button" onclick="openShareModal('sendViber', {{ $post->id }})"> <img src="{{ asset('icons/viber.png') }}" alt=""></button>
                                 </div>
                             </div>
                             <div class="item-body">

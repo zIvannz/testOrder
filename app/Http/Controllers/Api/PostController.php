@@ -1,23 +1,36 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\PostRequest;
 use App\Models\Post;
-use Auth;
+use Response;
 
 class PostController extends Controller
 {
-    public function create(PostRequest $request)
+    public function getPosts()
     {
+        $posts = Post::all();
+        
+        return Response::json($posts, 201);
+    }
+
+    public function create(Request $request)
+    {
+        $validated = $request->validate([
+            'user_id' => 'required|numeric|exists:users,id',
+            'title' => 'required|max:50',
+            'quote' => 'required|unique:posts,quote|max:500',
+        ]);
+       
         $post = new Post();
-        $post->user_id = Auth::user()->id;
+        $post->user_id = $request->user_id;
         $post->title = $request->title;
         $post->quote = $request->quote;
         $post->save();
 
-        return redirect()->back();
+        return Response::json(['status' => true], 201);
     }
 
     public function update(Request $request)
@@ -36,4 +49,4 @@ class PostController extends Controller
 
         return redirect()->back();
     }
-}   
+}

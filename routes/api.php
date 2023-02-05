@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
+use Illuminate\Http\Request\Api;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('/auth/register', 'AuthController@createUser');
+Route::post('/auth/login', 'AuthController@loginUser');
+
+Route::get('/posts', 'PostController@getPosts');
+
+Route::group(['prefix' => 'post', 'middleware' =>  ['auth:sanctum']], function () {
+    Route::post('/create', 'PostController@create');
+    Route::post('/update', 'PostController@update');
 });

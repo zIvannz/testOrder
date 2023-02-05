@@ -7,6 +7,7 @@
         <div class="modal-content">
             <form id="sendEmailForm" action="{{ route('send.email') }}" method="post">
                 @csrf
+                <input type="hidden" id="sendEmailPostId" name="post_id">
                 <p id="errorsEmail"></p>
                 <label for="sendEmailValue">Enter Email</label>
                 <input type="email" id="sendEmailValue" name="email" required>

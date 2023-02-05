@@ -2,6 +2,11 @@ function openModal(modalId) {
     document.getElementById(modalId).style.display = "block";
 }
 
+function openShareModal(modalId, id) {
+    document.getElementById(modalId).style.display = "block";
+    document.getElementById(modalId + 'PostId').value = id
+}
+
 function closeModal(modalId) {
     document.getElementById(modalId).style.display = "none";
 }
@@ -21,7 +26,7 @@ window.onclick = function(event) {
     }else if(event.target.id == "sendEmail"){
         document.getElementById('sendEmail').style.display = "none";
     }else if(event.target.id == "sendViber"){
-        document.getElementById('sendViver').style.display = "none";
+        document.getElementById('sendViber').style.display = "none";
     }
 }
 
@@ -55,7 +60,7 @@ $("#sendTelegramForm").submit(function(e) {
         },
         error: function (errors) {
              modal.style.display = "block";
-            document.getElementById('errorsTelegram').innerHTML = errors.responseJSON.errors.number[0];
+            document.getElementById('errorsTelegram').innerHTML = errors.responseJSON.errors;
         }
     });
     
